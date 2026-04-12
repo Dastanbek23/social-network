@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+
+    <div class="card shadow p-4" style="width: 350px;">
+
+        <h3 class="text-center mb-4">Login</h3>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <input type="text"
+                   name="username"
+                   class="form-control mb-3"
+                   placeholder="Enter username">
+
+            <input type="password"
+                   name="password"
+                   class="form-control mb-3"
+                   placeholder="Enter password">
+
+            <button class="btn btn-primary w-100">
+                SIGN IN
+            </button>
+        </form>
+
+        <hr>
+
+        <a href="/" class="btn btn-outline-secondary w-100">
+            Create account
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
