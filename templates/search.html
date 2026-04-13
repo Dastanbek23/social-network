@@ -21,14 +21,24 @@
 </nav>
 <div class="container">
 
-    <div class="text-center mb-4">
-        <h3>{{ users.username }}</h3>
-        <p>Followers {{ users.following.count }}</p>
-        <p>Following {{ users.follower.count }}</p>
+<div class="text-center mb-4">
+    <h3>{{ users.username }}</h3>
 
-        <a href="/search/follow/{{users.id}}" class="btn btn-primary btn-sm">Follow</a>
-        <a href="/search/unfollow/{{users.id}}" class="btn btn-danger btn-sm">Unfollow</a>
+    <div class="d-flex justify-content-center gap-4">
+    <div class="text-center">
+        <h6 class="mb-0">Followers</h6>
+        <p class="mb-0">{{ users.following.count }}</p>
     </div>
+
+    <div class="text-center">
+        <h6 class="mb-0">Following</h6>
+        <p class="mb-0">{{ users.follower.count }}</p>
+    </div>
+</div>
+    <br>
+    <a href="/search/follow/{{users.id}}" class="btn btn-primary btn-sm">Follow</a>
+    <a href="/search/unfollow/{{users.id}}" class="btn btn-danger btn-sm">Unfollow</a>
+</div>
 
     <div class="row g-2">
         {% for i in photos %}

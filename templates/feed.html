@@ -26,9 +26,12 @@
             <img src="{{ i.image }}" class="card-img-top" style="max-height: 400px; object-fit: cover;">
 
             <div class="card-body">
-                <p class="card-text mb-2">{{ i.bio }}</p>
+                <p class="card-text mb-2">{{ i.description }}</p>
 
-                <p class="mb-0">❤️ {{ i.like_set.count }}</p>
+                <div class="d-flex gap-3">
+                    <span>❤️ {{ i.like_set.count }}</span>
+                    <span>💬 {{ i.comments_set.count }}</span>
+                </div>
             </div>
 
         </div>
