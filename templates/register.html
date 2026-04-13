@@ -11,13 +11,46 @@
             background: #f5f6f8;
         }
 
-        .auth-wrapper {
+        .wrapper {
             min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
         }
 
+        /* LEFT SIDE */
+        .left-side {
+            padding: 40px;
+        }
+
+        .brand-title {
+            font-size: 44px;
+            font-weight: 800;
+            color: #111827;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #6b7280;
+            margin-top: 18px;
+            line-height: 1.5;
+            max-width: 500px;
+        }
+
+        .highlight {
+            color: #E1306C;
+            font-weight: 700;
+        }
+
+        .mock-img {
+            width: 100%;
+            max-width: 600px;
+            margin-top: 25px;
+            border-radius: 18px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        }
+
+        /* RIGHT SIDE */
         .auth-box {
             width: 400px;
             background: #ffffff;
@@ -28,13 +61,7 @@
 
         .title {
             font-weight: 700;
-            font-size: 26px;
-            color: #111827;
-        }
-
-        .subtitle {
-            color: #6b7280;
-            font-size: 14px;
+            font-size: 24px;
         }
 
         input {
@@ -42,8 +69,6 @@
             padding: 10px 12px;
             border-radius: 10px !important;
             border: 1px solid #e5e7eb !important;
-            background: #fff !important;
-            color: #111827 !important;
         }
 
         input:focus {
@@ -53,91 +78,81 @@
         }
 
         .btn-primary {
-            background: #3b82f6;
-            border: none;
             border-radius: 10px;
             font-weight: 600;
         }
 
-        .btn-primary:hover {
-            background: #2563eb;
-        }
-
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 18px 0;
-            color: #9ca3af;
-            font-size: 12px;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: #e5e7eb;
-        }
-
-        .divider span {
-            margin: 0 10px;
-        }
-
-        .link-text {
-            font-size: 14px;
+        .small-text {
+            font-size: 13px;
             color: #6b7280;
-        }
-
-        .link-text a {
-            color: #3b82f6;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .link-text a:hover {
-            text-decoration: underline;
         }
     </style>
 </head>
 
 <body>
 
-<div class="auth-wrapper">
+<div class="container wrapper">
 
-    <div class="auth-box">
+    <div class="row w-100">
 
-        <div class="text-center mb-4">
-            <div class="title">Create account</div>
-            <div class="subtitle">Join the network</div>
+        <!-- LEFT SIDE -->
+        <div class="col-md-7 left-side d-flex flex-column justify-content-center">
+
+            <div class="brand-title">
+                Присоединяйтесь к сообществу<br>
+                и делитесь моментами
+            </div>
+
+            <div class="subtitle">
+                Создайте аккаунт и начните делиться своими
+                <span class="highlight">жизненными моментами</span>
+                с друзьями и близкими.
+            </div>
+
+            <img src="https://static.cdninstagram.com/rsrc.php/yR/r/92ZsVHNkyvf.webp"
+                 class="mock-img">
+
         </div>
 
-        <form method="post">
-            {% csrf_token %}
+        <!-- RIGHT SIDE -->
+        <div class="col-md-5 d-flex justify-content-center align-items-center">
 
-            <div class="mb-3">
-                {{ form.username }}
+            <div class="auth-box">
+
+                <div class="text-center mb-4">
+                    <div class="title">Create account</div>
+                    <div class="subtitle">Join the network</div>
+                </div>
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        {{ form.username }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.password1 }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.password2 }}
+                    </div>
+
+                    <button class="btn btn-primary w-100 py-2 mt-2">
+                        Sign up
+                    </button>
+                </form>
+
+                <div class="text-center mt-3 small-text">
+                    Already have an account?
+                    <a href="/login/" style="color:#3b82f6; text-decoration:none;">
+                        Sign in
+                    </a>
+                </div>
+
             </div>
 
-            <div class="mb-3">
-                {{ form.password1 }}
-            </div>
-
-            <div class="mb-3">
-                {{ form.password2 }}
-            </div>
-
-            <button class="btn btn-primary w-100 py-2 mt-2">
-                Sign up
-            </button>
-        </form>
-
-        <div class="divider">
-            <span>OR</span>
-        </div>
-
-        <div class="text-center link-text">
-            Already have an account?
-            <a href="/login/">Sign in</a>
         </div>
 
     </div>
