@@ -10,7 +10,14 @@ class UserRegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'password1', 'password2')
+        fields = ('username'.lower(), 'password1', 'password2')
+
+        def clean_username(self):
+            username = self.cleaned_data['username']
+
+            if username != username.lower():
+                raise forms.ValidationError('Username must contain only lowercase letters')
+            return username
 
 class UserCreateForm(forms.ModelForm):
     class Meta:
