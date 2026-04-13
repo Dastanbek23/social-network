@@ -2,38 +2,83 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Profile</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
-    .navbar {
-        background: white;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    }
+        body {
+            background: #f5f6f8;
+        }
 
-    .nav-link {
-        font-weight: 500;
-        margin: 0 6px;
-        transition: 0.2s;
-    }
+        /* NAVBAR */
+        .navbar {
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
 
-    .nav-link:hover {
-        color: #0d6efd !important;
-        transform: translateY(-1px);
-    }
+        .brand {
+            font-weight: 700;
+        }
 
-    .brand {
-        font-weight: 700;
-        letter-spacing: 0.5px;
-    }
+        .nav-link {
+            font-weight: 500;
+            transition: 0.2s;
+        }
 
-    .search-input {
-        border-radius: 10px;
-    }
-</style>
+        .nav-link:hover {
+            color: #0d6efd !important;
+            transform: translateY(-1px);
+        }
+
+        /* PROFILE STATS */
+        .stats-box {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 500px;
+            margin: 20px auto;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .stat-item {
+            transition: 0.2s;
+        }
+
+        .stat-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* POST CARD */
+        .post-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .post-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            background: white;
+            transition: 0.2s;
+        }
+
+        .post-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .search-input {
+            border-radius: 10px;
+        }
+    </style>
 </head>
-<body>
-<nav class="navbar navbar-expand-lg sticky-top">
 
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg sticky-top">
   <div class="container-fluid px-4">
 
     <a class="navbar-brand brand" href="/profile/">
@@ -46,10 +91,10 @@
 
     <div class="collapse navbar-collapse" id="nav">
 
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-lg-center">
+      <ul class="navbar-nav me-auto align-items-lg-center">
 
         <li class="nav-item">
-          <a class="nav-link active" href="/feed/">Feed</a>
+          <a class="nav-link" href="/feed/">Feed</a>
         </li>
 
         <li class="nav-item">
@@ -62,8 +107,7 @@
 
       </ul>
 
-      <form class="d-flex" role="search" action="/search/" method="get">
-
+      <form class="d-flex" action="/search/" method="get">
         <input class="form-control search-input me-2"
                type="search"
                name="q"
@@ -73,32 +117,66 @@
             Search
         </button>
       </form>
+
     </div>
   </div>
 </nav>
 
-<div class="container mt-3">
-    <div class="row justify-content-center g-2">
+<div class="container">
+
+    <!-- PROFILE STATS -->
+    <div class="stats-box">
+
+        <h4 class="fw-bold mb-3">{{ user.username }}</h4>
+
+        <div class="d-flex justify-content-center gap-5">
+
+            <a href="/profile/{{user.id}}/followers/" class="text-decoration-none text-dark stat-item">
+                <h6 class="text-muted mb-1">Followers</h6>
+                <h5 class="mb-0 fw-bold">{{ follower }}</h5>
+            </a>
+
+            <a href="/profile/{{user.id}}/following/" class="text-decoration-none text-dark stat-item">
+                <h6 class="text-muted mb-1">Following</h6>
+                <h5 class="mb-0 fw-bold">{{ following }}</h5>
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- POSTS -->
+    <div class="row g-3 justify-content-center">
+
         {% for i in photos %}
-        <div class="col-3">
-            <div class="card shadow-sm">
+        <div class="col-4 col-md-3">
 
-                <img src="{{ i.image }}"
-                     class="card-img-top"
-                     style="height:150px; object-fit:cover;">
+            <div class="post-card">
 
-                <div class="card-body p-2 text-center">
-                    <p class="card-text">{{ i.description }}</p>
-                    <a href="/detail/{{ i.id }}" class="btn btn-sm btn-primary">
+                <img src="{{ i.image }}">
+
+                <div class="p-2 text-center">
+
+                    <p class="mb-2 text-muted small">
+                        {{ i.description }}
+                    </p>
+
+                    <a href="/detail/{{ i.id }}"
+                       class="btn btn-sm btn-outline-primary rounded-pill">
                         Show
                     </a>
+
                 </div>
 
             </div>
+
         </div>
         {% endfor %}
+
     </div>
+
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

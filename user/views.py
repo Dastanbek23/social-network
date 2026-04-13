@@ -37,7 +37,10 @@ def logout_view(request):
 def profile(request):
     profile = Profile.objects.get(user=request.user)
     photos = Photo.objects.filter(profile=profile)
-    return render(request, 'profile.html', {'profile': profile, 'photos': photos})
+    follower = Follow.objects.filter(following=request.user).count()
+    following = Follow.objects.filter(follower=request.user).count()
+    return render(request, 'profile.html', {'profile': profile, 'photos':
+        photos, 'follower': follower, 'following': following})
 
 def create_post(request):
     profile, created = Profile.objects.get_or_create(user=request.user)
