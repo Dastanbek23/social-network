@@ -20,4 +20,6 @@ urlpatterns = [
     path('search/comments/<int:id>/', search_comments, name='search_comments'),
     path('feed/', feed, name='feed'),
     path('profile_user/<int:id>/', profile_user, name='profile_user'),
+    path('profile/<int:id>/followers/', all_followers, name='all_followers'),
+    path('profile/<int:id>/following/', all_following, name='all_following'),
 ]

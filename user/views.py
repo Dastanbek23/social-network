@@ -130,3 +130,13 @@ def profile_user(request, id):
     photos = Photo.objects.filter(profile=profile)
     return render(request, 'profile_user.html',
                   {'user': user, 'profile': profile, 'photos': photos})
+
+def all_followers(request, id):
+    user = User.objects.get(id=id)
+    followers = Follow.objects.filter(following=user)
+    return render(request, 'all_followers.html', {'user': user, 'followers': followers})
+
+def all_following(request, id):
+    user = User.objects.get(id=id)
+    following = Follow.objects.filter(follower=user)
+    return render(request, 'all_following.html', {'user': user, 'following': following})
